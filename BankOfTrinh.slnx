@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="bankoftrinh.client/bankoftrinh.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="BankOfTrinh.Server/BankOfTrinh.Server.csproj" />
+</Solution>
