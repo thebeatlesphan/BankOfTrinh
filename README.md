@@ -1,4 +1,3 @@
-```markdown
 # BankOfTrinh
 
 BankOfTrinh is a full-stack banking simulator built for C#, ASP.NET Core, Angular, SQL Server, Docker, and systems-design practice.
