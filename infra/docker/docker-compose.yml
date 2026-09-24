@@ -1,0 +1,47 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: bankoftrinh-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - bankoftrinh
+
+  # server:
+  #   build:
+  #     context: ../../BankOfTrinh.server
+  #     dockerfile: Dockerfile
+  #   container_name: bankoftrinh-server
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: Development
+  #     ConnectionStrings__BankOfTrinh: "Server=sqlserver,1433;Database=BankOfTrinh;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - sqlserver
+  #   networks:
+  #     - bankoftrinh
+
+  # client:
+  #   build:
+  #     context: ../../bankoftrinh.client
+  #     dockerfile: Dockerfile
+  #   container_name: bankoftrinh-client
+  #   ports:
+  #     - "4200:80"
+  #   depends_on:
+  #     - server
+  #   networks:
+  #     - bankoftrinh
+
+networks:
+  bankoftrinh:
+
+volumes:
+  sqlserver-data:
