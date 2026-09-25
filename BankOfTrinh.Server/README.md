@@ -51,3 +51,5 @@ BankOfTrinh/
     │           └── CustomerEmailAlreadyExistsException.cs
     ├── Program.cs
     └── appsettings.json
+
+Next step: Add automated tests for the customer creation feature, covering successful creation, validation failures, duplicate emails, and database persistence.
