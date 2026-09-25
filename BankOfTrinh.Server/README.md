@@ -1,17 +1,17 @@
-# BankOfTrinh.Server
-
-The backend API for BankOfTrinh, a banking simulator built for learning and portfolio practice.
-
-This project is intentionally designed as a modular monolith. The goal is to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, Docker, API design, transactions, testing, and general systems design without overengineering the application.
-
 ## Current Progress
 
-The initial domain entities have been created:
+The initial domain entities and EF Core database setup have been created.
 
-- `Customer`
-- `BankAccount`
+Implemented:
 
-These are currently plain C# domain classes. They contain the initial banking data and business rules but are not connected to a database or API yet.
+- `Customer` domain entity
+- `BankAccount` domain entity
+- `BankDbContext`
+- SQL Server provider configuration
+- Development connection string using .NET User Secrets
+- Initial EF Core migration: `InitialCreate`
+
+The initial migration has been generated but has not yet been applied to the SQL Server database.
 
 ## Repository Structure
 
@@ -19,7 +19,10 @@ These are currently plain C# domain classes. They contain the initial banking da
 BankOfTrinh/
 ├── bankoftrinh.client/       # Angular frontend
 └── BankOfTrinh.server/       # ASP.NET Core backend API
-    ├── Data/                 # EF Core DbContext, configurations, and migrations
+    ├── Data/
+    │   ├── Configurations/   # EF Core entity configurations
+    │   ├── Migrations/       # EF Core database migrations
+    │   └── BankDbContext.cs  # EF Core database context
     ├── Domain/               # Core business entities and rules
     │   ├── Accounts/
     │   │   └── BankAccount.cs
