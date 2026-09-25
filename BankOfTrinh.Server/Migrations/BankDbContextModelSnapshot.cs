@@ -33,7 +33,8 @@ namespace BankOfTrinh.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(19, 4)
+                        .HasColumnType("decimal(19,4)");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");

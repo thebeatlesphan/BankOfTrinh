@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankOfTrinh.Server.Migrations
 {
     [DbContext(typeof(BankDbContext))]
-    [Migration("20260925022534_InitialCreate")]
+    [Migration("20260925023108_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,7 +36,8 @@ namespace BankOfTrinh.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(19, 4)
+                        .HasColumnType("decimal(19,4)");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");

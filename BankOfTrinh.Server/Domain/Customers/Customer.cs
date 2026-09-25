@@ -15,7 +15,7 @@ public sealed class Customer
     {
         // Required by EF Core
     }
-
+    
     public Customer(string firstName, string lastName, string email)
     {
         Id = Guid.NewGuid();

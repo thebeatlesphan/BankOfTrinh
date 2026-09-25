@@ -15,4 +15,9 @@ public class BankDbContext : DbContext
 
     public DbSet<BankAccount> BankAccounts => Set<BankAccount>();
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(
+            typeof(BankDbContext).Assembly);
+    }
 }
