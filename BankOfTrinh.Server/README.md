@@ -6,27 +6,12 @@ This project is intentionally designed as a modular monolith. The goal is to pra
 
 ## Current Progress
 
-The initial domain structure has been created.
+The initial domain entities have been created:
 
-Currently implemented:
+- `Customer`
+- `BankAccount`
 
-- Domain folder structure
-- `Accounts` domain folder
-- `Customers` domain folder
-- Placeholder locations for account and customer models
-
-Not implemented yet:
-
-- Customer model
-- Bank account model
-- Entity Framework Core `DbContext`
-- Database configuration
-- API endpoints
-- Migrations
-- Authentication
-- Banking transactions
-- Automated tests
-- Docker configuration
+These are currently plain C# domain classes. They contain the initial banking data and business rules but are not connected to a database or API yet.
 
 ## Repository Structure
 
@@ -36,8 +21,10 @@ BankOfTrinh/
 └── BankOfTrinh.server/       # ASP.NET Core backend API
     ├── Data/                 # EF Core DbContext, configurations, and migrations
     ├── Domain/               # Core business entities and rules
-    │   ├── Accounts/         # Bank account-related domain models
-    │   └── Customers/        # Customer-related domain models
+    │   ├── Accounts/
+    │   │   └── BankAccount.cs
+    │   └── Customers/
+    │       └── Customer.cs
     ├── Features/             # Application features organized by use case
     ├── Common/               # Shared errors, results, and utilities
     ├── Program.cs            # Application startup and dependency registration
