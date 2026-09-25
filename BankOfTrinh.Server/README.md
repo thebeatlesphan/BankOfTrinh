@@ -1,6 +1,12 @@
+# BankOfTrinh.Server
+
+The backend API for BankOfTrinh, a banking simulator built for learning and portfolio practice.
+
+This project is intentionally designed as a modular monolith. The goal is to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, Docker, API design, transactions, testing, and general systems design without overengineering the application.
+
 ## Current Progress
 
-The initial domain entities and EF Core database setup have been created.
+The initial domain and database setup has been completed.
 
 Implemented:
 
@@ -9,9 +15,12 @@ Implemented:
 - `BankDbContext`
 - SQL Server provider configuration
 - Development connection string using .NET User Secrets
+- Entity Framework Core entity configuration
 - Initial EF Core migration: `InitialCreate`
+- SQL Server database created through EF Core migrations
+- Initial database tables created successfully
 
-The initial migration has been generated but has not yet been applied to the SQL Server database.
+The application currently builds successfully. Visual Studio IntelliSense/autocomplete is not currently working correctly, but this does not prevent the project from building or running.
 
 ## Repository Structure
 
