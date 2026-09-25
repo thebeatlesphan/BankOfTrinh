@@ -10,7 +10,7 @@ public sealed class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         builder.ToTable("Customers");
 
-        builder.HasKey(customer => CustomerId);
+        builder.HasKey(customer => customer.Id);
 
         builder.Property(customer => customer.FirstName)
             .HasMaxLength(100)
@@ -22,7 +22,7 @@ public sealed class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 
         builder.Property(customer => customer.Email)
             .HasMaxLength(320)
-            .IsRequired()
+            .IsRequired();
 
         builder.Property(customer => customer.CreatedAt)
             .IsRequired();

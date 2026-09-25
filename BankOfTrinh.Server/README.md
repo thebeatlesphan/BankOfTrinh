@@ -2,42 +2,52 @@
 
 The backend API for BankOfTrinh, a banking simulator built for learning and portfolio practice.
 
-This project is intentionally designed as a modular monolith. The goal is to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, Docker, API design, transactions, testing, and general systems design without overengineering the application.
+The project is intentionally designed as a modular monolith. It is being used to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, API design, database migrations, validation, and testing without overengineering the application.
 
-## Current Progress
+## Current State
 
-The initial domain and database setup has been completed.
+The initial database and domain setup is complete.
 
 Implemented:
 
 - `Customer` domain entity
 - `BankAccount` domain entity
 - `BankDbContext`
-- SQL Server provider configuration
+- SQL Server configuration
 - Development connection string using .NET User Secrets
-- Entity Framework Core entity configuration
-- Initial EF Core migration: `InitialCreate`
+- Entity Framework Core entity configurations
+- Initial database migration
 - SQL Server database created through EF Core migrations
-- Initial database tables created successfully
+- Unique customer email constraint
+- Customer creation feature
+- Customer creation API endpoint
+- Request validation
+- Duplicate customer email handling
+- Swagger/OpenAPI support
+- Successful project build
 
-The application currently builds successfully. Visual Studio IntelliSense/autocomplete is not currently working correctly, but this does not prevent the project from building or running.
+## Project Structure
 
-## Repository Structure
-
-```text
 BankOfTrinh/
 ├── bankoftrinh.client/       # Angular frontend
-└── BankOfTrinh.server/       # ASP.NET Core backend API
+└── BankOfTrinh.Server/       # ASP.NET Core backend API
     ├── Data/
-    │   ├── Configurations/   # EF Core entity configurations
-    │   ├── Migrations/       # EF Core database migrations
-    │   └── BankDbContext.cs  # EF Core database context
-    ├── Domain/               # Core business entities and rules
+    │   ├── BankAccountConfigurations.cs
+    │   ├── CustomerConfigurations.cs
+    │   ├── Migrations/
+    │   └── BankDbContext.cs
+    ├── Domain/
     │   ├── Accounts/
     │   │   └── BankAccount.cs
     │   └── Customers/
     │       └── Customer.cs
-    ├── Features/             # Application features organized by use case
-    ├── Common/               # Shared errors, results, and utilities
-    ├── Program.cs            # Application startup and dependency registration
-    └── appsettings.json      # Non-secret application configuration
+    ├── Features/
+    │   └── Customers/
+    │       └── CreateCustomer/
+    │           ├── CreateCustomerEndpoint.cs
+    │           ├── CreateCustomerRequest.cs
+    │           ├── CreateCustomerResponse.cs
+    │           ├── CreateCustomerService.cs
+    │           └── CustomerEmailAlreadyExistsException.cs
+    ├── Program.cs
+    └── appsettings.json

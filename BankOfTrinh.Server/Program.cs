@@ -1,4 +1,5 @@
 using BankOfTrinh.Server.Data;
+using BankOfTrinh.Server.Features.Customers.CreateCustomer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +15,12 @@ builder.Services.AddDbContext<BankDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
-
-// Learn more about configuration OpenAPI
 builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<CreateCustomerService>();
 
 var app = builder.Build();
 
@@ -26,9 +30,13 @@ app.MapStaticAssets();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+
+app.MapCreateCustomerEndpoint();
 
 app.UseAuthorization();
 
