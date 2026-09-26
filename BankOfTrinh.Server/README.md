@@ -4,25 +4,31 @@ The backend API for BankOfTrinh, a banking simulator built for learning and port
 
 The project is intentionally designed as a modular monolith. It is being used to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, API design, database migrations, validation, integration testing, and automated testing without overengineering the application.
 
-## Current State
+## Current Status
 
-The initial database, domain model, customer creation and retrieval features, validation, and automated integration test infrastructure are in place.
+The initial database, domain model, customer management, bank account creation, validation, and automated integration test infrastructure are in place.
 
 Implemented:
 
 - `Customer` domain entity
 - `BankAccount` domain entity
+- Customer-to-bank-account relationship
 - `BankDbContext`
 - SQL Server configuration
 - Development connection string using .NET User Secrets
 - Entity Framework Core entity configurations
-- Initial database migration
+- Entity Framework Core migrations
 - SQL Server database creation through EF Core migrations
 - Unique customer email constraint
+- Unique bank account number constraint
 - Customer creation feature
 - Customer creation API endpoint
 - Customer retrieval feature
 - Customer retrieval API endpoint
+- Bank account creation feature
+- Bank account creation API endpoint
+- Association of new bank accounts with existing customers
+- Initial bank account balance of zero
 - Request validation
 - Duplicate customer email handling
 - Not-found handling for missing customers
@@ -34,11 +40,16 @@ Implemented:
 - Test database migrations using the application’s EF Core migrations
 - Test configuration overriding the development connection string
 - Tests for successful customer creation
-- Tests for validation failures
+- Tests for customer validation failures
 - Tests for duplicate customer emails
-- Tests for database persistence
+- Tests for customer database persistence
 - Tests for retrieving an existing customer
 - Tests for retrieving a missing customer
+- Tests for successful bank account creation
+- Tests for creating an account for a missing customer
+- Tests for bank account database persistence
+- Tests for customer-account association
+- Tests for unique bank account numbers
 
 ## Project Structure
 
