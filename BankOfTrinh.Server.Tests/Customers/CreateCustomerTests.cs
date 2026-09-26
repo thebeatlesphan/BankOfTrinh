@@ -1,11 +1,12 @@
 using BankOfTrinh.Server.Data;
 using BankOfTrinh.Server.Tests.Infrastructure;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc.Testing;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http.Json;
-
 
 namespace BankOfTrinh.Server.Tests.Customers;
 
@@ -27,7 +28,10 @@ public sealed class CreateCustomerTests : IAsyncLifetime
 
         await _factory.ApplyMigrationsAsync();
 
-        _client = _factory.CreateClient();
+        _client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
     }
 
     public async Task DisposeAsync()
@@ -46,7 +50,11 @@ public sealed class CreateCustomerTests : IAsyncLifetime
             email = $"trinh-{Guid.NewGuid():N}@examples.com"
         };
 
-        var response = await _client.PostAsJsonAsync("/api/customeres", request);
+        var response = await _client.PostAsJsonAsync("/api/customers", request);
+
+        Console.WriteLine($"Status: {response.StatusCode}");
+        Console.WriteLine($"Location: {response.Headers.Location}");
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
 
         response.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -66,7 +74,7 @@ public sealed class CreateCustomerTests : IAsyncLifetime
             email = "not-an-email"
         };
 
-        var response = await _client.PostAsJsonAsync("/api/customer", request);
+        var response = await _client.PostAsJsonAsync("/api/customers", request);
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
@@ -83,7 +91,7 @@ public sealed class CreateCustomerTests : IAsyncLifetime
             email
         };
 
-        var firstResponse = await _client.PostAsJsonAsync("/api/customer", request);
+        var firstResponse = await _client.PostAsJsonAsync("/api/customers", request);
 
         firstResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -94,7 +102,7 @@ public sealed class CreateCustomerTests : IAsyncLifetime
             email
         };
 
-        var secondResponse = await _client.PostAsJsonAsync("/api/customer", duplicateRequest);
+        var secondResponse = await _client.PostAsJsonAsync("/api/customers", duplicateRequest);
 
         secondResponse.StatusCode.Should().Be(HttpStatusCode.Conflict);
     }

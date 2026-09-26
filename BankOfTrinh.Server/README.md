@@ -6,7 +6,7 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current State
 
-The initial database, domain, customer creation feature, and automated test infrastructure are in place.
+The initial database, domain model, customer creation feature, validation, and automated integration test infrastructure are in place.
 
 Implemented:
 
@@ -17,7 +17,7 @@ Implemented:
 - Development connection string using .NET User Secrets
 - Entity Framework Core entity configurations
 - Initial database migration
-- SQL Server database created through EF Core migrations
+- SQL Server database creation through EF Core migrations
 - Unique customer email constraint
 - Customer creation feature
 - Customer creation API endpoint
@@ -35,7 +35,7 @@ Implemented:
 - Tests for duplicate customer emails
 - Tests for database persistence
 
-The test suite now executes successfully through `dotnet test`. Some tests are currently failing and still need to be investigated. The test infrastructure itself is running, including the SQL Server Testcontainer and database migration setup.
+The complete test suite currently passes successfully through `dotnet test`.
 
 ## Project Structure
 
