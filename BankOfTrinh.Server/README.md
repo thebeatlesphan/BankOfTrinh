@@ -57,6 +57,13 @@ BankOfTrinh/
 │   │   └── Customers/
 │   │       └── Customer.cs
 │   ├── Features/
+│   │   ├── Accounts/
+│   │   │   └── CreateBankAccount/
+│   │   │       ├── CreateBankAccountEndpoint.cs
+│   │   │       ├── CreateBankAccountRequest.cs
+│   │   │       ├── CreateBankAccountResponse.cs
+│   │   │       ├── CreateBankAccountService.cs
+│   │   │       └── CustomerNotFoundException.cs
 │   │   └── Customers/
 │   │       ├── CreateCustomer/
 │   │       │   ├── CreateCustomerEndpoint.cs
@@ -72,6 +79,8 @@ BankOfTrinh/
 │   ├── Program.cs
 │   └── appsettings.json
 └── BankOfTrinh.Server.Tests/
+    ├── Accounts/
+    │   └── CreateBankAccountTests.cs
     ├── Customers/
     │   ├── CreateCustomerTests.cs
     │   └── GetCustomerTests.cs
@@ -79,6 +88,3 @@ BankOfTrinh/
         ├── BankApiFactory.cs
         ├── DatabaseTestCollection.cs
         └── SqlServerFixture.cs
-
-
-Next step: Implement bank account creation and associate new accounts with existing customers.
