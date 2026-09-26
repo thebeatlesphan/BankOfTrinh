@@ -16,11 +16,11 @@ public sealed class BankAccount
     public decimal Balance { get; private set; }
     public DateTime CreatedAtUtc { get; private set; }
 
-    public BankAccount(Guid customerId, string accountNumber)
+    public BankAccount(Guid customerId)
     {
         Id = Guid.NewGuid();
         CustomerId = customerId;
-        AccountNumber = accountNumber;
+        AccountNumber = GenerateAccountNumber();
         Balance = 0m;
         CreatedAtUtc = DateTime.UtcNow;
     }
