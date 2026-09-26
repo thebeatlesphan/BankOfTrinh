@@ -79,3 +79,6 @@ BankOfTrinh/
         ├── BankApiFactory.cs
         ├── DatabaseTestCollection.cs
         └── SqlServerFixture.cs
+
+
+Next step: Implement bank account creation and associate new accounts with existing customers.
