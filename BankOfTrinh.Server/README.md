@@ -6,7 +6,7 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current State
 
-The initial database, domain model, customer creation feature, validation, and automated integration test infrastructure are in place.
+The initial database, domain model, customer creation and retrieval features, validation, and automated integration test infrastructure are in place.
 
 Implemented:
 
@@ -21,8 +21,11 @@ Implemented:
 - Unique customer email constraint
 - Customer creation feature
 - Customer creation API endpoint
+- Customer retrieval feature
+- Customer retrieval API endpoint
 - Request validation
 - Duplicate customer email handling
+- Not-found handling for missing customers
 - Swagger/OpenAPI support
 - Successful project build
 - Dedicated xUnit test project
@@ -34,8 +37,8 @@ Implemented:
 - Tests for validation failures
 - Tests for duplicate customer emails
 - Tests for database persistence
-
-The complete test suite currently passes successfully through `dotnet test`.
+- Tests for retrieving an existing customer
+- Tests for retrieving a missing customer
 
 ## Project Structure
 
@@ -55,17 +58,23 @@ BankOfTrinh/
 │   │       └── Customer.cs
 │   ├── Features/
 │   │   └── Customers/
-│   │       └── CreateCustomer/
-│   │           ├── CreateCustomerEndpoint.cs
-│   │           ├── CreateCustomerRequest.cs
-│   │           ├── CreateCustomerResponse.cs
-│   │           ├── CreateCustomerService.cs
-│   │           └── CustomerEmailAlreadyExistsException.cs
+│   │       ├── CreateCustomer/
+│   │       │   ├── CreateCustomerEndpoint.cs
+│   │       │   ├── CreateCustomerRequest.cs
+│   │       │   ├── CreateCustomerResponse.cs
+│   │       │   ├── CreateCustomerService.cs
+│   │       │   └── CustomerEmailAlreadyExistsException.cs
+│   │       └── GetCustomer/
+│   │           ├── GetCustomerEndpoint.cs
+│   │           ├── GetCustomerRequest.cs
+│   │           ├── GetCustomerResponse.cs
+│   │           └── GetCustomerService.cs
 │   ├── Program.cs
 │   └── appsettings.json
 └── BankOfTrinh.Server.Tests/
     ├── Customers/
-    │   └── CreateCustomerTests.cs
+    │   ├── CreateCustomerTests.cs
+    │   └── GetCustomerTests.cs
     └── Infrastructure/
         ├── BankApiFactory.cs
         ├── DatabaseTestCollection.cs
