@@ -6,9 +6,9 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current Status
 
-The initial database, domain model, customer management, bank account creation, validation, and automated integration test infrastructure are in place.
+The initial database, domain model, customer management, bank account management, validation, and automated integration test infrastructure are in place.
 
-Implemented:
+Implemented features and infrastructure include:
 
 - `Customer` domain entity
 - `BankAccount` domain entity
@@ -27,8 +27,11 @@ Implemented:
 - Customer retrieval API endpoint
 - Bank account creation feature
 - Bank account creation API endpoint
+- Bank account retrieval feature
+- Bank account retrieval API endpoint
 - Association of new bank accounts with existing customers
 - Initial bank account balance of zero
+- Generated bank account numbers
 - Request validation
 - Duplicate customer email handling
 - Not-found handling for missing customers
@@ -50,6 +53,8 @@ Implemented:
 - Tests for bank account database persistence
 - Tests for customer-account association
 - Tests for unique bank account numbers
+- Tests for retrieving an existing bank account
+- Tests for retrieving a missing bank account
 
 ## Project Structure
 
@@ -69,12 +74,18 @@ BankOfTrinh/
 │   │       └── Customer.cs
 │   ├── Features/
 │   │   ├── Accounts/
-│   │   │   └── CreateBankAccount/
-│   │   │       ├── CreateBankAccountEndpoint.cs
-│   │   │       ├── CreateBankAccountRequest.cs
-│   │   │       ├── CreateBankAccountResponse.cs
-│   │   │       ├── CreateBankAccountService.cs
-│   │   │       └── CustomerNotFoundException.cs
+│   │   │   ├── CreateBankAccount/
+│   │   │   │   ├── CreateBankAccountEndpoint.cs
+│   │   │   │   ├── CreateBankAccountRequest.cs
+│   │   │   │   ├── CreateBankAccountResponse.cs
+│   │   │   │   ├── CreateBankAccountService.cs
+│   │   │   │   └── CustomerNotFoundException.cs
+│   │   │   └── GetBankAccount/
+│   │   │       └── BankAccountNotFoundException.cs
+│   │   │       ├── GetBankAccountEndpoint.cs
+│   │   │       ├── GetBankAccountRequest.cs
+│   │   │       ├── GetBankAccountResponse.cs
+│   │   │       └── GetBankAccountService.cs
 │   │   └── Customers/
 │   │       ├── CreateCustomer/
 │   │       │   ├── CreateCustomerEndpoint.cs
@@ -91,7 +102,8 @@ BankOfTrinh/
 │   └── appsettings.json
 └── BankOfTrinh.Server.Tests/
     ├── Accounts/
-    │   └── CreateBankAccountTests.cs
+    │   ├── CreateBankAccountTests.cs
+    │   └── GetBankAccountTests.cs
     ├── Customers/
     │   ├── CreateCustomerTests.cs
     │   └── GetCustomerTests.cs
@@ -100,4 +112,4 @@ BankOfTrinh/
         ├── DatabaseTestCollection.cs
         └── SqlServerFixture.cs
 
-The recommended next feature is bank account retrieval.
+The recommended next feature is retrieving all bank accounts belonging to a customer.
