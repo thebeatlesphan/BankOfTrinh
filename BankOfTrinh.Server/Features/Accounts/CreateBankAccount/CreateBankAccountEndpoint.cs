@@ -11,6 +11,7 @@ public static class CreateBankAccountEndpoint
             "/api/customers/{customerId:guid}/accounts",
             HandleAsync)
             .WithName("CreateBankAccount")
+            .WithTags("BankAccounts")
             .WithSummary("Creates a bank account for an existing customer")
             .Produces<CreateBankAccountResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status404NotFound)

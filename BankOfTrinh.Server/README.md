@@ -99,3 +99,5 @@ BankOfTrinh/
         ├── BankApiFactory.cs
         ├── DatabaseTestCollection.cs
         └── SqlServerFixture.cs
+
+The recommended next feature is bank account retrieval.

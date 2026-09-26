@@ -57,7 +57,10 @@ public static class CreateCustomerEndpoint
                 }
             })
             .WithName("CreateCustomer")
-            .WithTags("Customers");
+            .WithTags("Customers")
+            .WithSummary("Creates a new customer.")
+            .Produces<CreateCustomerResponse>(StatusCodes.Status201Created)
+            .ProducesProblem(StatusCodes.Status404NotFound);
 
         return endpoints;
     }

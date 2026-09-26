@@ -20,7 +20,10 @@ public static class GetCustomerEndPoint
                 : Results.Ok(response);
             })
             .WithName("GetCustomer")
-            .WithTags("Customers");
+            .WithTags("Customers")
+            .WithSummary("Get customer by Id.")
+            .Produces<GetCustomerResponse>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status404NotFound);
 
         return endpoints;
     }
