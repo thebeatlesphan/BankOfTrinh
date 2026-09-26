@@ -1,4 +1,5 @@
 using BankOfTrinh.Server.Data;
+using BankOfTrinh.Server.Features.Accounts.CreateBankAccount;
 using BankOfTrinh.Server.Features.Customers.CreateCustomer;
 using BankOfTrinh.Server.Features.Customers.GetCustomer;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ builder.Services.AddSwaggerGen();
 // Add endpoint services
 builder.Services.AddScoped<GetCustomerService>();
 builder.Services.AddScoped<CreateCustomerService>();
+builder.Services.AddScoped<CreateBankAccountService>();
 
 var app = builder.Build();
 
@@ -41,6 +43,7 @@ app.UseHttpsRedirection();
 // Register endpoints
 app.MapCreateCustomerEndpoint();
 app.MapGetCustomerEndpoint();
+app.MapCreateBankAccountEndpoint();
 
 app.UseAuthorization();
 
