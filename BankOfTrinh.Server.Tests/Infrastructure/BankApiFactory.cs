@@ -2,6 +2,7 @@ using BankOfTrinh.Server.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -20,6 +21,21 @@ public sealed class BankApiFactory : WebApplicationFactory<Program>
     {
         builder.UseEnvironment("Testing");
 
+        // Make the value available while Program.cs is being built
+        builder.UseSetting(
+            "ConnectionStrings:BankOfTrinh",
+            _connectionString);
+
+        builder.ConfigureAppConfiguration((_, configuration) =>
+        {
+            var testConnectionString = new Dictionary<string, string?>
+            {
+                ["ConnectionStrings:BankOfTrinh"] = _connectionString
+            };
+
+            configuration.AddInMemoryCollection(testConnectionString);
+        });
+
         builder.ConfigureServices(services =>
         {
             services.RemoveAll<DbContextOptions<BankDbContext>>();
@@ -29,13 +45,15 @@ public sealed class BankApiFactory : WebApplicationFactory<Program>
             {
                 options.UseSqlServer(_connectionString);
             });
-
-            using var serviceProvider = services.BuildServiceProvider();
-            using var scope = serviceProvider.CreateScope();
-
-            var dbContext = scope.ServiceProvider.GetRequiredService<BankDbContext>();
-
-            dbContext.Database.Migrate();
         });
+    }
+
+    public async Task ApplyMigrationsAsync()
+    {
+        using var scope = Services.CreateScope();
+
+        var dbContext = scope.ServiceProvider.GetRequiredService<BankDbContext>();
+
+        await dbContext.Database.MigrateAsync();
     }
 }
