@@ -10,51 +10,43 @@ The initial database, domain model, customer management, bank account management
 
 Implemented features and infrastructure include:
 
-- `Customer` domain entity
-- `BankAccount` domain entity
-- Customer-to-bank-account relationship
-- `BankDbContext`
-- SQL Server configuration
-- Development connection string using .NET User Secrets
-- Entity Framework Core entity configurations
-- Entity Framework Core migrations
-- SQL Server database creation through EF Core migrations
-- Unique customer email constraint
-- Unique bank account number constraint
-- Customer creation feature
-- Customer creation API endpoint
-- Customer retrieval feature
-- Customer retrieval API endpoint
-- Bank account creation feature
-- Bank account creation API endpoint
-- Bank account retrieval feature
-- Bank account retrieval API endpoint
-- Association of new bank accounts with existing customers
-- Initial bank account balance of zero
-- Generated bank account numbers
-- Request validation
-- Duplicate customer email handling
-- Not-found handling for missing customers
-- Swagger/OpenAPI support
-- Successful project build
-- Dedicated xUnit test project
-- ASP.NET Core integration testing with `WebApplicationFactory`
-- SQL Server test database using Testcontainers
-- Test database migrations using the application’s EF Core migrations
-- Test configuration overriding the development connection string
-- Tests for successful customer creation
-- Tests for customer validation failures
-- Tests for duplicate customer emails
-- Tests for customer database persistence
-- Tests for retrieving an existing customer
-- Tests for retrieving a missing customer
-- Tests for successful bank account creation
-- Tests for creating an account for a missing customer
-- Tests for bank account database persistence
-- Tests for customer-account association
-- Tests for unique bank account numbers
-- Tests for retrieving an existing bank account
-- Tests for retrieving a missing bank account
+- **Domain and data model**
+  - `Customer` and `BankAccount` entities
+  - Customer-to-bank-account relationship
+  - `BankDbContext` and EF Core entity configurations
+  - SQL Server integration with a development connection string stored using .NET User Secrets
+
+- **Database and persistence**
+  - EF Core migrations and database creation
+  - Unique constraints for customer email addresses and bank account numbers
+  - Persistent customer and bank account storage
+  - Generated bank account numbers and initial zero balances
+
+- **Customer management**
+  - Create and retrieve customers through API endpoints
+  - Request validation
+  - Duplicate email handling
+  - Missing-customer handling
+
+- **Bank account management**
+  - Create and retrieve bank accounts through API endpoints
+  - Association of new accounts with existing customers
+  - Missing-customer and missing-account handling
+
+- **API and development tooling**
+  - Swagger/OpenAPI support
+  - Successful project build
+  - Feature-oriented application structure
+
+- **Automated testing**
+  - Dedicated xUnit test project
+  - ASP.NET Core integration testing with `WebApplicationFactory`
+  - SQL Server test database provisioned with Testcontainers
+  - Test database migrations using the application's EF Core migrations
+  - Test configuration that overrides the development connection string
+  - Coverage for validation, API responses, persistence, uniqueness constraints, retrieval, and customer-account associations
+
+The recommended next feature is retrieving all bank accounts belonging to a customer.
 
 ## Project Structure
 
