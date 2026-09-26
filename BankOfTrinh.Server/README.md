@@ -2,11 +2,11 @@
 
 The backend API for BankOfTrinh, a banking simulator built for learning and portfolio practice.
 
-The project is intentionally designed as a modular monolith. It is being used to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, API design, database migrations, validation, and testing without overengineering the application.
+The project is intentionally designed as a modular monolith. It is being used to practice C#, ASP.NET Core, Entity Framework Core, SQL Server, API design, database migrations, validation, integration testing, and automated testing without overengineering the application.
 
 ## Current State
 
-The initial database and domain setup is complete.
+The initial database, domain, customer creation feature, and automated test infrastructure are in place.
 
 Implemented:
 
@@ -25,31 +25,48 @@ Implemented:
 - Duplicate customer email handling
 - Swagger/OpenAPI support
 - Successful project build
+- Dedicated xUnit test project
+- ASP.NET Core integration testing with `WebApplicationFactory`
+- SQL Server test database using Testcontainers
+- Test database migrations using the application’s EF Core migrations
+- Test configuration overriding the development connection string
+- Tests for successful customer creation
+- Tests for validation failures
+- Tests for duplicate customer emails
+- Tests for database persistence
+
+The test suite now executes successfully through `dotnet test`. Some tests are currently failing and still need to be investigated. The test infrastructure itself is running, including the SQL Server Testcontainer and database migration setup.
 
 ## Project Structure
 
+```text
 BankOfTrinh/
 ├── bankoftrinh.client/       # Angular frontend
-└── BankOfTrinh.Server/       # ASP.NET Core backend API
-    ├── Data/
-    │   ├── BankAccountConfigurations.cs
-    │   ├── CustomerConfigurations.cs
-    │   ├── Migrations/
-    │   └── BankDbContext.cs
-    ├── Domain/
-    │   ├── Accounts/
-    │   │   └── BankAccount.cs
-    │   └── Customers/
-    │       └── Customer.cs
-    ├── Features/
-    │   └── Customers/
-    │       └── CreateCustomer/
-    │           ├── CreateCustomerEndpoint.cs
-    │           ├── CreateCustomerRequest.cs
-    │           ├── CreateCustomerResponse.cs
-    │           ├── CreateCustomerService.cs
-    │           └── CustomerEmailAlreadyExistsException.cs
-    ├── Program.cs
-    └── appsettings.json
-
-Next step: Add automated tests for the customer creation feature, covering successful creation, validation failures, duplicate emails, and database persistence.
+├── BankOfTrinh.Server/       # ASP.NET Core backend API
+│   ├── Data/
+│   │   ├── BankAccountConfigurations.cs
+│   │   ├── CustomerConfigurations.cs
+│   │   ├── Migrations/
+│   │   └── BankDbContext.cs
+│   ├── Domain/
+│   │   ├── Accounts/
+│   │   │   └── BankAccount.cs
+│   │   └── Customers/
+│   │       └── Customer.cs
+│   ├── Features/
+│   │   └── Customers/
+│   │       └── CreateCustomer/
+│   │           ├── CreateCustomerEndpoint.cs
+│   │           ├── CreateCustomerRequest.cs
+│   │           ├── CreateCustomerResponse.cs
+│   │           ├── CreateCustomerService.cs
+│   │           └── CustomerEmailAlreadyExistsException.cs
+│   ├── Program.cs
+│   └── appsettings.json
+└── BankOfTrinh.Server.Tests/
+    ├── Customers/
+    │   └── CreateCustomerTests.cs
+    └── Infrastructure/
+        ├── BankApiFactory.cs
+        ├── DatabaseTestCollection.cs
+        └── SqlServerFixture.cs
