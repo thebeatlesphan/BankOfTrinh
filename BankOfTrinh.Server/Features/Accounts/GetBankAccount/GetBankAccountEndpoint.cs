@@ -6,14 +6,14 @@ public static class GetBankAccountEndpoint
         this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGet(
-            "/api/accounts/{accountId}",
+            "/api/accounts/{accountId:guid}",
             async (
-                Guid id,
+                Guid accountId,
                 GetBankAccountService service,
                 CancellationToken cancellationToken) =>
             {
                 var response = await service.GetByIdAsync(
-                    id,
+                    accountId,
                     cancellationToken);
 
                 return response is null
