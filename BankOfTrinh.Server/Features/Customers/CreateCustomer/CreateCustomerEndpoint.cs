@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace BankOfTrinh.Server.Features.Customers.CreateCustomer;
 
 public static class CreateCustomerEndpoint
@@ -12,6 +14,30 @@ public static class CreateCustomerEndpoint
                 CreateCustomerService service,
                 CancellationToken cancellationToken) =>
             {
+
+                var errors = new Dictionary<string, string[]>();
+
+                if (string.IsNullOrWhiteSpace(request.FirstName))
+                {
+                    errors["firstName"] = ["First name is required."];
+                }
+
+                if (string.IsNullOrWhiteSpace(request.LastName))
+                {
+                    errors["lastName"] = ["Last name is required"];
+                }
+
+                if (string.IsNullOrWhiteSpace(request.Email) ||
+                    !new EmailAddressAttribute().IsValid(request.Email))
+                {
+                    errors["email"] = ["A valid email is required."];
+                }
+
+                if (errors.Count > 0)
+                {
+                    return Results.ValidationProblem(errors);
+                }
+
                 try
                 {
                     var response = await service.CreateAsync(

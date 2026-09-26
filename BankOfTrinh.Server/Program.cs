@@ -44,6 +44,21 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
+// Debugging endpoints
+var endpointsDataSources = app.Services
+    .GetServices<EndpointDataSource>();
+
+foreach (var dataSource in endpointsDataSources)
+{
+    foreach (var endpoint in dataSource.Endpoints)
+    {
+        Console.WriteLine(
+            $"{endpoint.DisplayName} - " +
+            $"{string.Join(", ", endpoint.Metadata.OfType<HttpMethodMetadata>()
+            .SelectMany(m => m.HttpMethods))}");
+    }
+}
+
 app.Run();
 
 public partial class Program
