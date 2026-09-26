@@ -8,5 +8,5 @@ public sealed class CustomerNotFoundException : Exception
         CustomerId = customerId;
     }
 
-    public Guid CustomerId { get; private set; };
+    public Guid CustomerId { get; private set; }
 }
