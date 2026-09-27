@@ -6,7 +6,7 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current Status
 
-The initial database, domain model, customer management, bank account management, validation, and automated integration test infrastructure are in place.
+The initial database, domain model, customer management, bank account management, customer-account retrieval, validation, and automated integration test infrastructure are in place.
 
 Implemented features and infrastructure include:
 
@@ -29,14 +29,18 @@ Implemented features and infrastructure include:
   - Missing-customer handling
 
 - **Bank account management**
-  - Create and retrieve bank accounts through API endpoints
-  - Association of new accounts with existing customers
+  - Create and retrieve individual bank accounts
+  - Retrieve all bank accounts belonging to a customer
+  - Associate new bank accounts with existing customers
   - Missing-customer and missing-account handling
+  - Initial account balance of zero
+  - Generated bank account numbers
 
 - **API and development tooling**
   - Swagger/OpenAPI support
-  - Successful project build
+  - RESTful API endpoints for customers and bank accounts
   - Feature-oriented application structure
+  - Successful project build
 
 - **Automated testing**
   - Dedicated xUnit test project
@@ -44,9 +48,14 @@ Implemented features and infrastructure include:
   - SQL Server test database provisioned with Testcontainers
   - Test database migrations using the application's EF Core migrations
   - Test configuration that overrides the development connection string
-  - Coverage for validation, API responses, persistence, uniqueness constraints, retrieval, and customer-account associations
-
-The recommended next feature is retrieving all bank accounts belonging to a customer.
+  - Reusable `TestApiClient` for common test operations
+  - Tests for customer creation and retrieval
+  - Tests for bank account creation and retrieval
+  - Tests for retrieving all bank accounts for a customer
+  - Tests for validation failures and duplicate customer emails
+  - Tests for missing customers and missing bank accounts
+  - Tests for database persistence and customer-account associations
+  - Tests for unique bank account numbers
 
 ## Project Structure
 
@@ -72,12 +81,16 @@ BankOfTrinh/
 │   │   │   │   ├── CreateBankAccountResponse.cs
 │   │   │   │   ├── CreateBankAccountService.cs
 │   │   │   │   └── CustomerNotFoundException.cs
-│   │   │   └── GetBankAccount/
-│   │   │       └── BankAccountNotFoundException.cs
-│   │   │       ├── GetBankAccountEndpoint.cs
-│   │   │       ├── GetBankAccountRequest.cs
-│   │   │       ├── GetBankAccountResponse.cs
-│   │   │       └── GetBankAccountService.cs
+│   │   │   ├── GetBankAccount/
+│   │   │   │   ├── GetBankAccountEndpoint.cs
+│   │   │   │   ├── GetBankAccountRequest.cs
+│   │   │   │   ├── GetBankAccountResponse.cs
+│   │   │   │   ├── GetBankAccountService.cs
+│   │   │   │   └── BankAccountNotFoundException.cs
+│   │   │   └── GetCustomerBankAccounts/
+│   │   │       ├── GetCustomerBankAccountsEndpoint.cs
+│   │   │       ├── GetCustomerBankAccountsResponse.cs
+│   │   │       └── GetCustomerBankAccountsService.cs
 │   │   └── Customers/
 │   │       ├── CreateCustomer/
 │   │       │   ├── CreateCustomerEndpoint.cs
@@ -95,13 +108,15 @@ BankOfTrinh/
 └── BankOfTrinh.Server.Tests/
     ├── Accounts/
     │   ├── CreateBankAccountTests.cs
-    │   └── GetBankAccountTests.cs
+    │   ├── GetBankAccountTests.cs
+    │   └── GetCustomerBankAccountsTests.cs
     ├── Customers/
     │   ├── CreateCustomerTests.cs
     │   └── GetCustomerTests.cs
     └── Infrastructure/
         ├── BankApiFactory.cs
         ├── DatabaseTestCollection.cs
-        └── SqlServerFixture.cs
+        ├── SqlServerFixture.cs
+        └── TestApiClient.cs
 
-The recommended next feature is retrieving all bank accounts belonging to a customer.
+The recommended next step is to implement bank account transactions, starting with a deposit operation.
