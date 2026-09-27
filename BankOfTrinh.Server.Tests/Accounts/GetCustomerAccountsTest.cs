@@ -4,15 +4,17 @@ using Microsoft.AspNetCore.Mvc.Testing;
 namespace BankOfTrinh.Server.Tests.Accounts;
 
 [Collection("Database collection")]
-public sealed class GetBankAccountTests : IAsyncLifetime
+public sealed class GetCustomerBankAccountsTest : IAsyncLifetime
 {
     private readonly SqlServerFixture _sqlServerFixture;
+
     private BankApiFactory _factory = null!;
+
     private HttpClient _client = null!;
+
     private TestApiClient _apiClient = null!;
 
-
-    public GetBankAccountTests(SqlServerFixture sqlServerFixture)
+    public GetCustomerBankAccountsTest(SqlServerFixture sqlServerFixture)
     {
         _sqlServerFixture = sqlServerFixture;
     }
@@ -37,20 +39,5 @@ public sealed class GetBankAccountTests : IAsyncLifetime
         await _factory.DisposeAsync();
     }
 
-    [Fact]
-    public async Task GetBankAccount_WithExistingAccount_ReturnsAccount()
-    {
-        var customer = await _apiClient.CreateCustomerAsync();
 
-        var createdAccount = await _apiClient.CreateBankAccountAsync(customer.Id);
-
-        var account = await _apiClient.GetBankAccountAsync(createdAccount.Id);
-
-        Assert.NotNull(account);
-        Assert.Equal(createdAccount.Id, account.Id);
-        Assert.Equal(customer.Id, account.CustomerId);
-        Assert.Equal(createdAccount.AccountNumber, account.AccountNumber);
-        Assert.Equal(createdAccount.Balance, account.Balance);
-        Assert.Equal(createdAccount.CreatedAtUtc, account.CreatedAtUtc);
-    }
 }

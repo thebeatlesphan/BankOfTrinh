@@ -1,6 +1,5 @@
 using BankOfTrinh.Server.Data;
 using BankOfTrinh.Server.Features.Accounts.CreateBankAccount;
-using BankOfTrinh.Server.Features.Customers.CreateCustomer;
 using BankOfTrinh.Server.Tests.Infrastructure;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -19,6 +18,8 @@ public sealed class CreateBankAccountTests : IAsyncLifetime
 
     private HttpClient _client = null!;
 
+    private TestApiClient _apiClient = null!;
+
     public CreateBankAccountTests(SqlServerFixture sqlServerFixture)
     {
         _sqlServerFixture = sqlServerFixture;
@@ -34,6 +35,8 @@ public sealed class CreateBankAccountTests : IAsyncLifetime
         {
             AllowAutoRedirect = false
         });
+
+        _apiClient = new TestApiClient(_client);
     }
 
     public async Task DisposeAsync()
@@ -42,45 +45,10 @@ public sealed class CreateBankAccountTests : IAsyncLifetime
         await _factory.DisposeAsync();
     }
 
-    public async Task<CreateCustomerResponse> CreateCustomerAsync()
-    {
-        var request = new CreateCustomerRequest(
-            FirstName: "Test",
-            LastName: "Customer",
-            Email: $"{Guid.NewGuid()}@example.com");
-
-        var response = await _client.PostAsJsonAsync(
-            "/api/customers",
-            request);
-
-        response.EnsureSuccessStatusCode();
-
-        var customer = await response.Content.ReadFromJsonAsync<CreateCustomerResponse>();
-
-        return customer
-            ?? throw new InvalidOperationException("The custome response was empty.");
-    }
-
-    public async Task<CreateBankAccountResponse> CreateBankAccountAsync(
-        Guid customerId)
-    {
-        var response = await _client.PostAsync(
-            $"/api/customers/{customerId}/accounts",
-            content: null);
-
-        response.EnsureSuccessStatusCode();
-
-        var account = await response.Content.ReadFromJsonAsync<CreateBankAccountResponse>();
-
-        return account
-            ?? throw new InvalidOperationException(
-                "The account response was empty.");
-    }
-
     [Fact]
     public async Task CreateBankAccount_WithExistingCustomer_ReturnsCreatedAccount()
     {
-        var customer = await CreateCustomerAsync();
+        var customer = await _apiClient.CreateCustomerAsync();
 
         var response = await _client.PostAsync(
             $"/api/customers/{customer.Id}/accounts",
@@ -109,7 +77,7 @@ public sealed class CreateBankAccountTests : IAsyncLifetime
     [Fact]
     public async Task CreateBankAccount_PersistsAccountWithCustomerId()
     {
-        var customer = await CreateCustomerAsync();
+        var customer = await _apiClient.CreateCustomerAsync();
 
         var response = await _client.PostAsync(
             $"/api/customers/{customer.Id}/accounts",
@@ -135,10 +103,10 @@ public sealed class CreateBankAccountTests : IAsyncLifetime
     [Fact]
     public async Task CreateMultipleBankAccounts_GeneratesUniqueAccountsNumbers()
     {
-        var customer = await CreateCustomerAsync();
+        var customer = await _apiClient.CreateCustomerAsync();
 
-        var first = await CreateBankAccountAsync(customer.Id);
-        var second = await CreateBankAccountAsync(customer.Id);
+        var first = await _apiClient.CreateBankAccountAsync(customer.Id);
+        var second = await _apiClient.CreateBankAccountAsync(customer.Id);
 
         first.AccountNumber.Should().NotBe(second.AccountNumber);
 
