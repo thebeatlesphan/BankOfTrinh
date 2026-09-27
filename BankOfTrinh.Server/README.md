@@ -6,21 +6,31 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current Status
 
-The initial database, domain model, customer management, bank account management, customer-account retrieval, validation, and automated integration test infrastructure are in place.
+The initial database, domain model, customer management, bank account management, customer-account retrieval, account transaction model, validation, and automated integration test infrastructure are in place.
 
 Implemented features and infrastructure include:
 
 - **Domain and data model**
-  - `Customer` and `BankAccount` entities
+  - `Customer` entity
+  - `BankAccount` entity
+  - `AccountTransaction` entity
+  - `TransactionType` enum
   - Customer-to-bank-account relationship
+  - Bank-account-to-transaction relationship
+  - Account balance management through domain methods
+  - Transaction balance snapshots using `BalanceAfterTransaction`
   - `BankDbContext` and EF Core entity configurations
-  - SQL Server integration with a development connection string stored using .NET User Secrets
 
 - **Database and persistence**
   - EF Core migrations and database creation
+  - SQL Server integration
+  - Development connection string stored using .NET User Secrets
   - Unique constraints for customer email addresses and bank account numbers
-  - Persistent customer and bank account storage
-  - Generated bank account numbers and initial zero balances
+  - Persistent customer, bank account, and account transaction storage
+  - Generated bank account numbers
+  - Initial bank account balances of zero
+  - Account transaction table and foreign-key relationship
+  - Account transaction indexes for account history and transaction ordering
 
 - **Customer management**
   - Create and retrieve customers through API endpoints
@@ -36,10 +46,22 @@ Implemented features and infrastructure include:
   - Initial account balance of zero
   - Generated bank account numbers
 
+- **Account transactions**
+  - `AccountTransaction` domain entity
+  - Deposit transaction type
+  - Transaction identifiers using `Guid`
+  - Transaction amount storage using `decimal`
+  - Transaction creation timestamps
+  - Balance snapshots after transactions
+  - Transaction persistence through `BankDbContext`
+  - EF Core migration for the account transaction table
+  - Domain method for applying deposits to bank accounts
+
 - **API and development tooling**
   - Swagger/OpenAPI support
   - RESTful API endpoints for customers and bank accounts
   - Feature-oriented application structure
+  - Modular monolith architecture
   - Successful project build
 
 - **Automated testing**
@@ -61,18 +83,27 @@ Implemented features and infrastructure include:
 
 ```text
 BankOfTrinh/
-├── bankoftrinh.client/       # Angular frontend
-├── BankOfTrinh.Server/       # ASP.NET Core backend API
+├── bankoftrinh.client/                 # Angular frontend
+│
+├── BankOfTrinh.Server/                 # ASP.NET Core backend API
 │   ├── Data/
+│   │   ├── AccountTransactionConfigurations.cs
 │   │   ├── BankAccountConfigurations.cs
 │   │   ├── CustomerConfigurations.cs
 │   │   ├── Migrations/
+│   │   │   ├── ...                      # EF Core migrations
+│   │   │   └── ...
 │   │   └── BankDbContext.cs
+│   │
 │   ├── Domain/
 │   │   ├── Accounts/
 │   │   │   └── BankAccount.cs
-│   │   └── Customers/
-│   │       └── Customer.cs
+│   │   ├── Customers/
+│   │   │   └── Customer.cs
+│   │   └── Transactions/
+│   │       ├── AccountTransaction.cs
+│   │       └── TransactionType.cs
+│   │
 │   ├── Features/
 │   │   ├── Accounts/
 │   │   │   ├── CreateBankAccount/
@@ -81,16 +112,25 @@ BankOfTrinh/
 │   │   │   │   ├── CreateBankAccountResponse.cs
 │   │   │   │   ├── CreateBankAccountService.cs
 │   │   │   │   └── CustomerNotFoundException.cs
+│   │   │   │
+│   │   │   ├── Deposit/
+│   │   │   │   ├── DepositEndpoint.cs
+│   │   │   │   ├── DepositRequest.cs
+│   │   │   │   ├── DepositResponse.cs
+│   │   │   │   └── DepositService.cs
+│   │   │   │
 │   │   │   ├── GetBankAccount/
 │   │   │   │   ├── GetBankAccountEndpoint.cs
 │   │   │   │   ├── GetBankAccountRequest.cs
 │   │   │   │   ├── GetBankAccountResponse.cs
 │   │   │   │   ├── GetBankAccountService.cs
 │   │   │   │   └── BankAccountNotFoundException.cs
+│   │   │   │
 │   │   │   └── GetCustomerBankAccounts/
 │   │   │       ├── GetCustomerBankAccountsEndpoint.cs
 │   │   │       ├── GetCustomerBankAccountsResponse.cs
 │   │   │       └── GetCustomerBankAccountsService.cs
+│   │   │
 │   │   └── Customers/
 │   │       ├── CreateCustomer/
 │   │       │   ├── CreateCustomerEndpoint.cs
@@ -98,25 +138,29 @@ BankOfTrinh/
 │   │       │   ├── CreateCustomerResponse.cs
 │   │       │   ├── CreateCustomerService.cs
 │   │       │   └── CustomerEmailAlreadyExistsException.cs
+│   │       │
 │   │       └── GetCustomer/
 │   │           ├── GetCustomerEndpoint.cs
 │   │           ├── GetCustomerRequest.cs
 │   │           ├── GetCustomerResponse.cs
 │   │           └── GetCustomerService.cs
+│   │
 │   ├── Program.cs
 │   └── appsettings.json
+│
 └── BankOfTrinh.Server.Tests/
     ├── Accounts/
     │   ├── CreateBankAccountTests.cs
+    │   ├── DepositTests.cs
     │   ├── GetBankAccountTests.cs
     │   └── GetCustomerBankAccountsTests.cs
+    │
     ├── Customers/
     │   ├── CreateCustomerTests.cs
     │   └── GetCustomerTests.cs
+    │
     └── Infrastructure/
         ├── BankApiFactory.cs
         ├── DatabaseTestCollection.cs
         ├── SqlServerFixture.cs
         └── TestApiClient.cs
-
-The recommended next step is to implement bank account transactions, starting with a deposit operation.
