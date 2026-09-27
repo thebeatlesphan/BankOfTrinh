@@ -1,4 +1,5 @@
 using BankOfTrinh.Server.Domain.Customers;
+using BankOfTrinh.Server.Domain.Transactions;
 
 namespace BankOfTrinh.Server.Domain.Accounts;
 
@@ -9,12 +10,16 @@ public sealed class BankAccount
         // Required by EF Core
     }
 
+    private readonly List<AccountTransaction> _transactions = [];
+
     public Guid Id { get; private set; }
     public Guid CustomerId { get; private set; }
 
     public string AccountNumber { get; private set; } = string.Empty;
     public decimal Balance { get; private set; }
     public DateTime CreatedAtUtc { get; private set; }
+
+    public IReadOnlyCollection<AccountTransaction> Transactions => _transactions.AsReadOnly();
 
     public BankAccount(Guid customerId)
     {
