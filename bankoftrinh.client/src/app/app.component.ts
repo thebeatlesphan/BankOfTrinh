@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,6 +11,8 @@ interface WeatherForecast {
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -18,20 +21,17 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.getForecasts();
+  ngOnInit(): void {
+    this.http
+      .get<WeatherForecast[]>('/weatherforecast')
+      .subscribe({
+        next: result => {
+          this.forecasts = result;
+          console.log('Forecasts:', result);
+        },
+        error: error => {
+          console.error('Could not load forecasts:', error);
+        }
+      });
   }
-
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  title = 'bankoftrinh.client';
 }

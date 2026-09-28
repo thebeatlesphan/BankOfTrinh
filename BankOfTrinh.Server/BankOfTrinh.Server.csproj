@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <SpaRoot>..\bankoftrinh.client</SpaRoot>
-    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <!-- <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand> -->
     <SpaProxyServerUrl>https://localhost:56593</SpaProxyServerUrl>
     <UserSecretsId>93d97002-27fa-46e3-9145-5c29fd938186</UserSecretsId>
   </PropertyGroup>
