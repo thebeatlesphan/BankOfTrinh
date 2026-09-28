@@ -1,27 +1,145 @@
-# BankoftrinhClient
+# bankoftrinh.client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+The frontend application for BankOfTrinh, a banking simulator built with Angular for learning and portfolio practice.
 
-## Development server
+The frontend will provide a user interface for interacting with the BankOfTrinh backend API. It will be used to practice Angular application structure, components, services, routing, forms, validation, HTTP communication, state management, and frontend testing.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Current Status
 
-## Code scaffolding
+The Angular frontend has not been implemented yet.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The backend currently provides functionality for:
 
-## Build
+- Customer management
+- Bank account management
+- Deposits
+- Account balance updates
+- Persisted account transactions
+- Request validation
+- Integration testing
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The frontend will be developed incrementally by connecting user-facing screens to the existing backend API.
 
-## Running unit tests
+## Planned Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Customer Management
 
-## Running end-to-end tests
+- Create customer form
+- Customer details view
+- Customer lookup
+- Customer validation messages
+- Duplicate email error handling
+- Missing customer error handling
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Bank Account Management
 
-## Further help
+- Create bank account for an existing customer
+- View individual bank account
+- View all accounts belonging to a customer
+- Display account number
+- Display current balance
+- Display account owner
+- Missing account error handling
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Account Transactions
+
+- Deposit form
+- Withdrawal form
+- Transaction history
+- Transaction type display
+- Transaction amount display
+- Balance-after-transaction display
+- Transaction timestamp display
+- Validation for invalid transaction amounts
+- Insufficient balance error handling
+
+### User Interface
+
+- Navigation between application views
+- Reusable form components
+- Reusable error-message components
+- Loading indicators
+- Empty-state messages
+- Success messages
+- API error messages
+- Responsive layout
+- Basic accessibility support
+
+### Testing
+
+- Component tests
+- Service tests
+- Form validation tests
+- HTTP client tests
+- Routing tests
+- Error-state tests
+- Loading-state tests
+- End-to-end tests for key user journeys
+
+## Initial User Journeys
+
+The frontend will initially support the following workflow:
+
+```text
+Create customer
+    ↓
+Create bank account
+    ↓
+View account details
+    ↓
+Make deposit
+    ↓
+View updated balance
+    ↓
+View transaction history
+
+
+## Project Structure
+
+```text
+bankoftrinh.client/
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── errors/
+│   │   │   ├── interceptors/
+│   │   │   ├── models/
+│   │   │   └── services/
+│   │   │
+│   │   ├── shared/
+│   │   │   ├── components/
+│   │   │   ├── directives/
+│   │   │   └── pipes/
+│   │   │
+│   │   ├── features/
+│   │   │   ├── customers/
+│   │   │   │   ├── create-customer/
+│   │   │   │   ├── get-customer/
+│   │   │   │   └── customer.models.ts
+│   │   │   │
+│   │   │   ├── accounts/
+│   │   │   │   ├── create-account/
+│   │   │   │   ├── account-details/
+│   │   │   │   ├── customer-accounts/
+│   │   │   │   └── account.models.ts
+│   │   │   │
+│   │   │   └── transactions/
+│   │   │       ├── deposit/
+│   │   │       ├── withdrawal/
+│   │   │       ├── transaction-history/
+│   │   │       └── transaction.models.ts
+│   │   │
+│   │   ├── app.routes.ts
+│   │   ├── app.config.ts
+│   │   └── app.component.ts
+│   │
+│   ├── assets/
+│   ├── environments/
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.css
+│
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── README.md
