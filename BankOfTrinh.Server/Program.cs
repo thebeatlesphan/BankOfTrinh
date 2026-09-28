@@ -1,5 +1,6 @@
 using BankOfTrinh.Server.Data;
 using BankOfTrinh.Server.Features.Accounts.CreateBankAccount;
+using BankOfTrinh.Server.Features.Accounts.Deposit;
 using BankOfTrinh.Server.Features.Accounts.GetBankAccount;
 using BankOfTrinh.Server.Features.Accounts.GetCustomerBankAccounts;
 using BankOfTrinh.Server.Features.Customers.CreateCustomer;
@@ -29,6 +30,7 @@ builder.Services.AddScoped<CreateCustomerService>();
 builder.Services.AddScoped<CreateBankAccountService>();
 builder.Services.AddScoped<GetBankAccountService>();
 builder.Services.AddScoped<GetCustomerBankAccountsService>();
+builder.Services.AddScoped<DepositService>();
 
 var app = builder.Build();
 
@@ -50,6 +52,7 @@ app.MapGetCustomerEndpoint();
 app.MapCreateBankAccountEndpoint();
 app.MapGetBankAccountEndpoint();
 app.MapGetCustomerBankAccountsEndpoint();
+app.MapDepositEndpoint();
 
 app.UseAuthorization();
 
