@@ -92,7 +92,7 @@ Make deposit
 View updated balance
     ↓
 View transaction history
-
+```
 
 ## Project Structure
 
@@ -143,3 +143,4 @@ bankoftrinh.client/
 ├── package.json
 ├── tsconfig.json
 └── README.md
+```
