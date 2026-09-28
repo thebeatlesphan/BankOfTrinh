@@ -6,9 +6,11 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current Status
 
-The backend currently supports customer management, bank account management, account deposits, transaction persistence, validation, and automated integration testing.
+The backend currently supports customer management, bank account management, deposits, transaction persistence, validation, and automated integration testing.
 
-The initial banking domain and persistence infrastructure are in place. Customers can be created and retrieved, bank accounts can be created for customers, and deposits update account balances while creating persisted account transactions.
+Customers can be created and retrieved, bank accounts can be created for customers, and deposits update account balances while creating persisted account transactions.
+
+The project builds successfully and the automated test suite currently contains 18 passing tests.
 
 ## Implemented Features
 
@@ -70,6 +72,8 @@ The initial banking domain and persistence infrastructure are in place. Customer
 - Balance snapshots after deposits
 - Transaction persistence through `BankDbContext`
 - Transaction identifiers using `Guid`
+- Validation for non-positive deposit amounts
+- Missing bank account handling for deposits
 
 ### API and Development Tooling
 
@@ -99,8 +103,11 @@ The initial banking domain and persistence infrastructure are in place. Customer
 - Customer-account association tests
 - Unique bank account number tests
 - Valid deposit integration test
-- Verification that a deposit updates the account balance
-- Verification that the deposit response contains the new balance
+- Verification that deposits update account balances
+- Verification of deposit response values
+- Negative deposit validation test
+- Missing bank account deposit test
+- Tests confirming invalid deposits do not update account balances
 
 ## Project Structure
 
