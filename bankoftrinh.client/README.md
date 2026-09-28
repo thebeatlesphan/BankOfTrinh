@@ -1,8 +1,8 @@
 # bankoftrinh.client
 
-The frontend application for BankOfTrinh, a banking simulator built with Angular for learning and portfolio practice.
+The frontend application for BankOfTrinh, a modern banking simulator built with Angular for learning and portfolio practice.
 
-The frontend will provide a user interface for interacting with the BankOfTrinh backend API. It will be used to practice Angular application structure, components, services, routing, forms, validation, HTTP communication, state management, and frontend testing.
+The frontend will provide a polished user interface for interacting with the BankOfTrinh backend API. It will be used to practice Angular application structure, components, services, routing, reactive forms, validation, HTTP communication, state management, responsive design, accessibility, and frontend testing.
 
 ## Current Status
 
@@ -18,83 +18,112 @@ The backend currently provides functionality for:
 - Request validation
 - Integration testing
 
-The frontend will be developed incrementally by connecting user-facing screens to the existing backend API.
+The frontend will be developed incrementally by completing one full user journey at a time.
 
-## Planned Features
+## Current Focus
 
-### Customer Management
+The current frontend focus is defining the visual foundation and implementing customer creation.
 
-- Create customer form
-- Customer details view
-- Customer lookup
-- Customer validation messages
-- Duplicate email error handling
-- Missing customer error handling
+## Product Vision
 
-### Bank Account Management
+BankOfTrinh should feel like a small, trustworthy digital banking application rather than a collection of disconnected demo screens.
 
-- Create bank account for an existing customer
-- View individual bank account
-- View all accounts belonging to a customer
-- Display account number
-- Display current balance
-- Display account owner
-- Missing account error handling
+The interface should communicate:
 
-### Account Transactions
+- Trust
+- Clarity
+- Stability
+- Simplicity
+- Professionalism
+- Financial confidence
 
-- Deposit form
-- Withdrawal form
-- Transaction history
-- Transaction type display
-- Transaction amount display
-- Balance-after-transaction display
-- Transaction timestamp display
-- Validation for invalid transaction amounts
-- Insufficient balance error handling
+The design should be modern and polished without looking like a copy of a real bank. It should remain understandable as a learning project and avoid unnecessary visual complexity.
 
-### User Interface
+## Visual Direction
 
-- Navigation between application views
-- Reusable form components
-- Reusable error-message components
-- Loading indicators
-- Empty-state messages
-- Success messages
-- API error messages
-- Responsive layout
-- Basic accessibility support
+### Design Concept
 
-### Testing
+The visual direction is based on a calm, premium banking dashboard:
 
-- Component tests
-- Service tests
-- Form validation tests
-- HTTP client tests
-- Routing tests
-- Error-state tests
-- Loading-state tests
-- End-to-end tests for key user journeys
+- Deep navy application shell
+- Warm off-white page backgrounds
+- White or lightly tinted content cards
+- Teal or emerald accent color for positive financial actions
+- Strong typographic hierarchy
+- Generous spacing
+- Rounded but restrained card corners
+- Subtle borders and shadows
+- Clear success, warning, and error states
+- Minimal decorative elements
 
-## Initial User Journeys
+The application should feel closer to a modern financial dashboard than a generic Bootstrap admin template.
 
-The frontend will initially support the following workflow:
+### Design Personality
 
-```text
-Create customer
-    ↓
-Create bank account
-    ↓
-View account details
-    ↓
-Make deposit
-    ↓
-View updated balance
-    ↓
-View transaction history
-```
+The interface should be:
 
-## Project Structure
+- Calm rather than flashy
+- Premium rather than overly decorative
+- Friendly rather than corporate
+- Structured rather than dense
+- Functional without feeling plain
+
+Avoid:
+
+- Excessive gradients
+- Bright saturated colors everywhere
+- Heavy shadows
+- Crowded tables
+- Too many cards on one screen
+- Decorative animations that distract from financial information
+- Unnecessary charts before the core workflows are complete
+
+## Proposed Color System
+
+The color palette should use CSS custom properties so that colors can be changed consistently across the application.
+
+```css
+:root {
+  --color-brand-950: #0b1f33;
+  --color-brand-900: #102a43;
+  --color-brand-800: #163a5c;
+  --color-brand-700: #1f567d;
+
+  --color-accent-600: #087f73;
+  --color-accent-500: #0f9d8f;
+  --color-accent-100: #d9f3ef;
+
+  --color-page: #f5f7f9;
+  --color-surface: #ffffff;
+  --color-surface-muted: #eef2f5;
+
+  --color-text-primary: #17212b;
+  --color-text-secondary: #5d6b78;
+  --color-text-muted: #8a98a6;
+  --color-text-inverse: #ffffff;
+
+  --color-border: #dce3e8;
+  --color-border-strong: #c4d0d8;
+
+  --color-success-600: #16805d;
+  --color-success-100: #ddf5e9;
+
+  --color-warning-600: #a86b00;
+  --color-warning-100: #fff1cc;
+
+  --color-danger-600: #c23b4a;
+  --color-danger-100: #fde4e7;
+
+  --shadow-sm: 0 1px 2px rgb(16 42 67 / 0.06);
+  --shadow-md: 0 8px 24px rgb(16 42 67 / 0.08);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+}
+
+
+## Recommended Project Structure
 
 ```text
 bankoftrinh.client/
@@ -143,4 +172,5 @@ bankoftrinh.client/
 ├── package.json
 ├── tsconfig.json
 └── README.md
+
 ```
