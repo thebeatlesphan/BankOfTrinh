@@ -6,78 +6,101 @@ The project is intentionally designed as a modular monolith. It is being used to
 
 ## Current Status
 
-The initial database, domain model, customer management, bank account management, customer-account retrieval, account transaction model, validation, and automated integration test infrastructure are in place.
+The backend currently supports customer management, bank account management, account deposits, transaction persistence, validation, and automated integration testing.
 
-Implemented features and infrastructure include:
+The initial banking domain and persistence infrastructure are in place. Customers can be created and retrieved, bank accounts can be created for customers, and deposits update account balances while creating persisted account transactions.
 
-- **Domain and data model**
-  - `Customer` entity
-  - `BankAccount` entity
-  - `AccountTransaction` entity
-  - `TransactionType` enum
-  - Customer-to-bank-account relationship
-  - Bank-account-to-transaction relationship
-  - Account balance management through domain methods
-  - Transaction balance snapshots using `BalanceAfterTransaction`
-  - `BankDbContext` and EF Core entity configurations
+## Implemented Features
 
-- **Database and persistence**
-  - EF Core migrations and database creation
-  - SQL Server integration
-  - Development connection string stored using .NET User Secrets
-  - Unique constraints for customer email addresses and bank account numbers
-  - Persistent customer, bank account, and account transaction storage
-  - Generated bank account numbers
-  - Initial bank account balances of zero
-  - Account transaction table and foreign-key relationship
-  - Account transaction indexes for account history and transaction ordering
+### Domain and Data Model
 
-- **Customer management**
-  - Create and retrieve customers through API endpoints
-  - Request validation
-  - Duplicate email handling
-  - Missing-customer handling
+- `Customer` entity
+- `BankAccount` entity
+- `AccountTransaction` entity
+- `TransactionType` enum
+- Customer-to-bank-account relationship
+- Bank-account-to-transaction relationship
+- Account balance management through domain methods
+- Transaction balance snapshots using `BalanceAfterTransaction`
+- `BankDbContext`
+- EF Core entity configurations
 
-- **Bank account management**
-  - Create and retrieve individual bank accounts
-  - Retrieve all bank accounts belonging to a customer
-  - Associate new bank accounts with existing customers
-  - Missing-customer and missing-account handling
-  - Initial account balance of zero
-  - Generated bank account numbers
+### Database and Persistence
 
-- **Account transactions**
-  - `AccountTransaction` domain entity
-  - Deposit transaction type
-  - Transaction identifiers using `Guid`
-  - Transaction amount storage using `decimal`
-  - Transaction creation timestamps
-  - Balance snapshots after transactions
-  - Transaction persistence through `BankDbContext`
-  - EF Core migration for the account transaction table
-  - Domain method for applying deposits to bank accounts
+- EF Core migrations and database creation
+- SQL Server integration
+- Development connection string stored using .NET User Secrets
+- Unique constraints for customer email addresses and bank account numbers
+- Persistent customer, bank account, and account transaction storage
+- Generated bank account numbers
+- Initial bank account balances of zero
+- Account transaction table with a foreign-key relationship to bank accounts
+- Account transaction indexes for account history and transaction ordering
+- Persistent transaction identifiers using `Guid`
+- Transaction amount storage using `decimal`
+- Transaction creation timestamps
 
-- **API and development tooling**
-  - Swagger/OpenAPI support
-  - RESTful API endpoints for customers and bank accounts
-  - Feature-oriented application structure
-  - Modular monolith architecture
-  - Successful project build
+### Customer Management
 
-- **Automated testing**
-  - Dedicated xUnit test project
-  - ASP.NET Core integration testing with `WebApplicationFactory`
-  - SQL Server test database provisioned with Testcontainers
-  - Test database migrations using the application's EF Core migrations
-  - Test configuration that overrides the development connection string
-  - Reusable `TestApiClient` for common test operations
-  - Tests for customer creation and retrieval
-  - Tests for bank account creation and retrieval
-  - Tests for retrieving all bank accounts for a customer
-  - Tests for validation failures and duplicate customer emails
-  - Tests for missing customers and missing bank accounts
-  - Tests for database persistence and customer-account associations
-  - Tests for unique bank account numbers
+- Create customers through an API endpoint
+- Retrieve customers through an API endpoint
+- Request validation
+- Duplicate email handling
+- Missing-customer handling
+
+### Bank Account Management
+
+- Create bank accounts for existing customers
+- Retrieve individual bank accounts
+- Retrieve all bank accounts belonging to a customer
+- Associate new bank accounts with existing customers
+- Missing-customer handling
+- Missing-account handling
+- Initial account balance of zero
+- Generated bank account numbers
+
+### Account Transactions
+
+- Deposit transaction type
+- Deposit API endpoint
+- Deposit request and response models
+- Deposit service
+- Domain method for applying deposits to bank accounts
+- Account balance updates
+- Balance snapshots after deposits
+- Transaction persistence through `BankDbContext`
+- Transaction identifiers using `Guid`
+
+### API and Development Tooling
+
+- Swagger/OpenAPI support
+- RESTful API endpoints for customers and bank accounts
+- Feature-oriented application structure
+- Modular monolith architecture
+- Development database configuration using User Secrets
+- Successful project build
+
+### Automated Testing
+
+- Dedicated xUnit test project
+- ASP.NET Core integration testing with `WebApplicationFactory`
+- SQL Server test database provisioned with Testcontainers
+- Test database migrations using the application's EF Core migrations
+- Test configuration that overrides the development connection string
+- Reusable `TestApiClient` for common API operations
+- Customer creation and retrieval tests
+- Bank account creation and retrieval tests
+- Tests for retrieving all bank accounts for a customer
+- Validation failure tests
+- Duplicate customer email tests
+- Missing customer tests
+- Missing bank account tests
+- Database persistence tests
+- Customer-account association tests
+- Unique bank account number tests
+- Valid deposit integration test
+- Verification that a deposit updates the account balance
+- Verification that the deposit response contains the new balance
 
 ## Project Structure
 
