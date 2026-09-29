@@ -4,34 +4,36 @@
       BankOfTrinh
     </a>
 
-    <span class="header-label">Digital Banking Simulator</span>
+    <nav class="utility-nav" aria-label="Utility navigation">
+      <a routerLink="/help">Help</a>
+      <a routerLink="/profile">Profile</a>
+    </nav>
   </header>
 
-  <div class="app-body">
-    <aside class="sidebar">
-      <nav aria-label="Main navigation">
-        <a routerLink="/"
-           routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: true }">
-          Dashboard
-        </a>
+  <nav class="main-nav" aria-label="Main navigation">
+    <a routerLink="/"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      Dashboard
+    </a>
 
-        <a routerLink="/customers" routerLinkActive="active">
-          Customers
-        </a>
+    <a routerLink="/customers"
+       routerLinkActive="active">
+      Customers
+    </a>
 
-        <a routerLink="/accounts" routerLinkActive="active">
-          Accounts
-        </a>
+    <a routerLink="/accounts"
+       routerLinkActive="active">
+      Accounts
+    </a>
 
-        <a routerLink="/transactions" routerLinkActive="active">
-          Transactions
-        </a>
-      </nav>
-    </aside>
+    <a routerLink="/transactions"
+       routerLinkActive="active">
+      Activity
+    </a>
+  </nav>
 
-    <main class="main-content">
-      <router-outlet />
-    </main>
-  </div>
+  <main class="main-content">
+    <router-outlet />
+  </main>
 </div>

@@ -41,87 +41,32 @@ The design should be modern and polished without looking like a copy of a real b
 
 ## Visual Direction
 
-### Design Concept
+BankOfTrinh should feel like a calm, thoughtful financial workspace rather
+than a traditional banking portal or generic admin dashboard.
 
-The visual direction is based on a calm, premium banking dashboard:
-
-- Deep navy application shell
-- Warm off-white page backgrounds
-- White or lightly tinted content cards
-- Teal or emerald accent color for positive financial actions
-- Strong typographic hierarchy
-- Generous spacing
-- Rounded but restrained card corners
-- Subtle borders and shadows
-- Clear success, warning, and error states
-- Minimal decorative elements
-
-The application should feel closer to a modern financial dashboard than a generic Bootstrap admin template.
+The visual language uses warm neutrals, charcoal typography, muted sage accents,
+and restrained coral highlights. The interface should feel trustworthy and
+structured while remaining approachable and distinctive.
 
 ### Design Personality
 
 The interface should be:
 
-- Calm rather than flashy
-- Premium rather than overly decorative
-- Friendly rather than corporate
-- Structured rather than dense
-- Functional without feeling plain
+- Grounded rather than flashy
+- Human rather than corporate
+- Clear rather than dense
+- Warm rather than cold
+- Confident rather than aggressive
 
 Avoid:
 
+- Heavy navy application shells
+- Generic Bootstrap dashboard styling
 - Excessive gradients
-- Bright saturated colors everywhere
-- Heavy shadows
-- Crowded tables
-- Too many cards on one screen
-- Decorative animations that distract from financial information
-- Unnecessary charts before the core workflows are complete
-
-## Proposed Color System
-
-The color palette should use CSS custom properties so that colors can be changed consistently across the application.
-
-```css
-:root {
-  --color-brand-950: #0b1f33;
-  --color-brand-900: #102a43;
-  --color-brand-800: #163a5c;
-  --color-brand-700: #1f567d;
-
-  --color-accent-600: #087f73;
-  --color-accent-500: #0f9d8f;
-  --color-accent-100: #d9f3ef;
-
-  --color-page: #f5f7f9;
-  --color-surface: #ffffff;
-  --color-surface-muted: #eef2f5;
-
-  --color-text-primary: #17212b;
-  --color-text-secondary: #5d6b78;
-  --color-text-muted: #8a98a6;
-  --color-text-inverse: #ffffff;
-
-  --color-border: #dce3e8;
-  --color-border-strong: #c4d0d8;
-
-  --color-success-600: #16805d;
-  --color-success-100: #ddf5e9;
-
-  --color-warning-600: #a86b00;
-  --color-warning-100: #fff1cc;
-
-  --color-danger-600: #c23b4a;
-  --color-danger-100: #fde4e7;
-
-  --shadow-sm: 0 1px 2px rgb(16 42 67 / 0.06);
-  --shadow-md: 0 8px 24px rgb(16 42 67 / 0.08);
-
-  --radius-sm: 0.375rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 1rem;
-}
-
+- Large decorative illustrations
+- Dense data tables
+- Overuse of accent colors
+- Unnecessary animations
 
 ## Recommended Project Structure
 
@@ -160,7 +105,11 @@ bankoftrinh.client/
 │   │   │
 │   │   ├── app.routes.ts
 │   │   ├── app.config.ts
+│   │   └── app.component.html
+│   │   └── app.component.css
 │   │   └── app.component.ts
+│   │   └── app.component.spec.ts
+│   │   └── app.module.ts
 │   │
 │   ├── assets/
 │   ├── environments/
