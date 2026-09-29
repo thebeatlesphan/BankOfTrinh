@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-brand-950: #0b1f33;
+  --color-brand-900: #102a43;
+  --color-accent-600: #087f73;
+  --color-page: #f5f7f9;
+  --color-surface: #ffffff;
+  --color-text-primary: #17212b;
+  --color-text-secondary: #5d6b78;
+  --color-border: #dce3e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-text-primary);
+  font-family: Arial, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

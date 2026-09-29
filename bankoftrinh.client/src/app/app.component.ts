@@ -1,37 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
+import { Component } from '@angular/core';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet
+} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    RouterOutlet
+  ],
 })
-export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.http
-      .get<WeatherForecast[]>('/weatherforecast')
-      .subscribe({
-        next: result => {
-          this.forecasts = result;
-          console.log('Forecasts:', result);
-        },
-        error: error => {
-          console.error('Could not load forecasts:', error);
-        }
-      });
-  }
-}
+export class AppComponent {}

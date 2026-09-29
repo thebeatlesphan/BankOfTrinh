@@ -1,26 +1,37 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<div class="app-shell">
+  <header class="app-header">
+    <a class="brand" routerLink="/">
+      BankOfTrinh
+    </a>
 
-<p>This component demonstrates fetching data from the server.</p>
+    <span class="header-label">Digital Banking Simulator</span>
+  </header>
 
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+  <div class="app-body">
+    <aside class="sidebar">
+      <nav aria-label="Main navigation">
+        <a routerLink="/"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }">
+          Dashboard
+        </a>
 
-<table *ngIf="forecasts">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-      @for (forecast of forecasts; track forecast.date) {
-      <tr>
-        <td>{{ forecast.date }}</td>
-        <td>{{ forecast.temperatureC }}°C</td>
-        <td>{{ forecast.temperatureF }}°F</td>
-        <td>{{ forecast.summary }}</td>
-      </tr>
-      }
-    </tbody>
-</table>
+        <a routerLink="/customers" routerLinkActive="active">
+          Customers
+        </a>
+
+        <a routerLink="/accounts" routerLinkActive="active">
+          Accounts
+        </a>
+
+        <a routerLink="/transactions" routerLinkActive="active">
+          Transactions
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
