@@ -14,6 +14,18 @@
       Available accounts
     </h2>
 
-    <app-account-card [account]="account" />
+    @if (isLoading()) {
+      <p>Loading your accounts...</p>
+    } @else if (errorMessage()) {
+      <p role="alert">{{ errorMessage() }}</p>
+    } @else if (accounts().length === 0) {
+      <p>No accounts found.</p>
+    } @else {
+      <div class="accounts-list">
+        @for (account of accounts(); track account.id) {
+          <app-account-card [account]="account" />
+        }
+      </div>
+    }
   </section>
 </main>
