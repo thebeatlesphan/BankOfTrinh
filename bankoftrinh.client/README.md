@@ -6,8 +6,6 @@ The frontend will provide a polished user interface for interacting with the Ban
 
 ## Current Status
 
-The Angular frontend has not been implemented yet.
-
 The backend currently provides functionality for:
 
 - Customer management
@@ -19,25 +17,6 @@ The backend currently provides functionality for:
 - Integration testing
 
 The frontend will be developed incrementally by completing one full user journey at a time.
-
-## Current Focus
-
-The current frontend focus is defining the visual foundation and implementing customer creation.
-
-## Product Vision
-
-BankOfTrinh should feel like a small, trustworthy digital banking application rather than a collection of disconnected demo screens.
-
-The interface should communicate:
-
-- Trust
-- Clarity
-- Stability
-- Simplicity
-- Professionalism
-- Financial confidence
-
-The design should be modern and polished without looking like a copy of a real bank. It should remain understandable as a learning project and avoid unnecessary visual complexity.
 
 ## Visual Direction
 
@@ -68,41 +47,12 @@ Avoid:
 - Overuse of accent colors
 - Unnecessary animations
 
-## Recommended Project Structure
+## Project Structure
 
 ```text
 bankoftrinh.client/
 ├── src/
 │   ├── app/
-│   │   ├── core/
-│   │   │   ├── errors/
-│   │   │   ├── interceptors/
-│   │   │   ├── models/
-│   │   │   └── services/
-│   │   │
-│   │   ├── shared/
-│   │   │   ├── components/
-│   │   │   ├── directives/
-│   │   │   └── pipes/
-│   │   │
-│   │   ├── features/
-│   │   │   ├── customers/
-│   │   │   │   ├── create-customer/
-│   │   │   │   ├── get-customer/
-│   │   │   │   └── customer.models.ts
-│   │   │   │
-│   │   │   ├── accounts/
-│   │   │   │   ├── create-account/
-│   │   │   │   ├── account-details/
-│   │   │   │   ├── customer-accounts/
-│   │   │   │   └── account.models.ts
-│   │   │   │
-│   │   │   └── transactions/
-│   │   │       ├── deposit/
-│   │   │       ├── withdrawal/
-│   │   │       ├── transaction-history/
-│   │   │       └── transaction.models.ts
-│   │   │
 │   │   ├── app.routes.ts
 │   │   ├── app.config.ts
 │   │   └── app.component.html
@@ -118,6 +68,8 @@ bankoftrinh.client/
 │   └── styles.css
 │
 ├── angular.json
+├── aspnetcore-https.js
+├── karma.conf.js
 ├── package.json
 ├── tsconfig.json
 └── README.md
