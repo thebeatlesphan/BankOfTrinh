@@ -45,7 +45,7 @@ public sealed class BankAccount
     {
         if (amount <= 0)
             throw new InvalidOperationException(
-                "Withdrawl amount must be greater than zero.");
+                "Withdraw amount must be greater than zero.");
 
         if (amount > Balance)
             throw new InvalidOperationException(

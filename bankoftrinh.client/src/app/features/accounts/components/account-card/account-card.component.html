@@ -1,0 +1,29 @@
+<article class="account-card">
+  <div class="account-card__header">
+    <div>
+      <p class="account-card__type">Bank Account</p>
+
+      <h2>Account ending {{ account.accountNumber.slice(-4) }}</h2>
+    </div>
+  </div>
+
+  <div class="account-card__number">
+    Account number: {{ account.accountNumber }}
+  </div>
+
+  <div class="account-card__balance">
+    <span class="account-card__balance-label">Current balance</span>
+
+    <strong>
+      {{ account.balance | currency: currencyCode : 'symbol' : '1.2-2' }}
+    </strong>
+  </div>
+
+  <div class="account-card__footer">
+    <span>Opened</span>
+
+    <span>
+      {{ account.createdAtUtc | date: 'MMM d, y' : 'UTC' }}
+    </span>
+  </div>
+</article>
