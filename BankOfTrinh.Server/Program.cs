@@ -32,7 +32,24 @@ builder.Services.AddScoped<GetBankAccountService>();
 builder.Services.AddScoped<GetCustomerBankAccountsService>();
 builder.Services.AddScoped<DepositService>();
 
+// Handle development CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularClient", policy =>
+    {
+        policy
+            .WithOrigins("https://localhost:56593", "https://127.0.0.1:56593")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseCors("AngularClient");
+
+app.UseAuthorization();
 
 app.UseDefaultFiles();
 app.MapStaticAssets();
@@ -44,8 +61,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 // Register endpoints
 app.MapCreateCustomerEndpoint();
 app.MapGetCustomerEndpoint();
@@ -54,10 +69,7 @@ app.MapGetBankAccountEndpoint();
 app.MapGetCustomerBankAccountsEndpoint();
 app.MapDepositEndpoint();
 
-app.UseAuthorization();
-
 app.MapControllers();
-
 app.MapFallbackToFile("/index.html");
 
 app.Run();
