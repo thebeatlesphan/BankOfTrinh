@@ -1,0 +1,26 @@
+.accounts-page {
+  padding: 2rem 0;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: #71806f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: #292a26;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.intro {
+  max-width: 32rem;
+  margin-top: 1rem;
+  color: #686960;
+  font-size: 1.05rem;
+}
