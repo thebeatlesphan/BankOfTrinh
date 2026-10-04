@@ -1,58 +1,168 @@
-.accounts-page {
-  width: min(100% - 2rem, 72rem);
-  margin: 0 auto;
-  padding: 4rem 0;
+:host {
+  display: block;
 }
 
-.accounts-page__header {
-  max-width: 42rem;
-  margin-bottom: 2.5rem;
+.account-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid #dfe3d9;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #292d29;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
 }
 
-.accounts-page__eyebrow {
-  margin: 0 0 1rem;
+.account-card:hover {
+  border-color: #c4cdbb;
+  box-shadow: 0 0.75rem 2rem rgb(54 65 48 / 8%);
+  transform: translateY(-1px);
+}
+
+.account-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.account-card__type {
+  margin: 0 0 0.4rem;
   color: #747d6c;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.12em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
-h1 {
+.account-card__name {
   margin: 0;
   color: #292d29;
-  font-size: clamp(2.5rem, 7vw, 4.75rem);
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.account-card__number {
+  margin: 0.45rem 0 0;
+  color: #8b9086;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+}
+
+.account-card__balance {
+  margin: 0;
+  color: #292d29;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
   font-weight: 600;
-  letter-spacing: -0.06em;
-  line-height: 0.98;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
-.accounts-page__intro {
-  max-width: 34rem;
-  margin: 1.25rem 0 0;
+.account-card__balance-label {
+  margin: 0 0 0.5rem;
+  color: #8b9086;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.account-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #ecefe9;
+}
+
+.account-card__activity {
+  margin: 0;
   color: #74756d;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 0.875rem;
+  line-height: 1.4;
 }
 
-.accounts-page__content {
-  max-width: 38rem;
+.account-card__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.4rem;
+  background: #687960;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.account-card__link:hover {
+  background: #586951;
+  transform: translateY(-1px);
+}
+
+.account-card__link:focus-visible {
+  outline: 3px solid rgb(116 125 108 / 30%);
+  outline-offset: 2px;
 }
 
 @media (max-width: 600px) {
-  .accounts-page {
-    padding: 2.5rem 0;
+  .account-card {
+    padding: 1.25rem;
+  }
+
+  .account-card__header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .account-card__footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .account-card__link {
+    width: 100%;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .account-card,
+  .account-card__link {
+    transition: none;
+  }
+}
+
+.accounts-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.accounts-page__content > p {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid #dfe3d9;
+  border-radius: 0.75rem;
+  background: #fafbf9;
+  color: #74756d;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+  .accounts-page__content > p[role="alert"] {
+    border-color: #e4c9c2;
+    background: #fdf7f5;
+    color: #875b50;
+  }

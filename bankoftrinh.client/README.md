@@ -6,6 +6,10 @@ The frontend provides a polished user interface for interacting with the BankOfT
 
 The frontend is being developed incrementally by completing one full user journey at a time.
 
+## Styling
+
+The application uses a clean, editorial-style layout built around a neutral surface palette and muted sage accents.
+
 ## Current Status
 
 The frontend currently includes the initial application shell and the first routed feature page.
