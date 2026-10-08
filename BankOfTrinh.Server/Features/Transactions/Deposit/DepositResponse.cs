@@ -1,4 +1,4 @@
-namespace BankOfTrinh.Server.Features.Accounts.Deposit;
+namespace BankOfTrinh.Server.Features.Transactions.Deposit;
 
 public sealed record DepositResponse(
     Guid TransactionId,

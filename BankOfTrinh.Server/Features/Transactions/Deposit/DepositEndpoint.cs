@@ -1,6 +1,6 @@
 using BankOfTrinh.Server.Features.Accounts.GetBankAccount;
 
-namespace BankOfTrinh.Server.Features.Accounts.Deposit;
+namespace BankOfTrinh.Server.Features.Transactions.Deposit;
 
 public static class DepositEndpoint
 {

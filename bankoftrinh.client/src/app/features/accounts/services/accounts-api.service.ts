@@ -18,5 +18,10 @@ export class AccountsApiService {
       `${this.apiUrl}/customers/${customerId}/bank-accounts`,
     )
     .pipe(map((response) => response.accounts));
-  }
+  };
+
+  getAccount(accountId: string): Observable<BankAccount> {
+
+  };
+
 }

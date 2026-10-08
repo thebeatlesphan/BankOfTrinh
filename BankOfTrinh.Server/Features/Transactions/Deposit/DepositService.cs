@@ -1,10 +1,9 @@
-
 using BankOfTrinh.Server.Data;
 using BankOfTrinh.Server.Domain.Transactions;
 using BankOfTrinh.Server.Features.Accounts.GetBankAccount;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankOfTrinh.Server.Features.Accounts.Deposit;
+namespace BankOfTrinh.Server.Features.Transactions.Deposit;
 
 public sealed class DepositService
 {

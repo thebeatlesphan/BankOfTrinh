@@ -1,7 +1,7 @@
 using BankOfTrinh.Server.Features.Accounts.CreateBankAccount;
-using BankOfTrinh.Server.Features.Accounts.Deposit;
 using BankOfTrinh.Server.Features.Accounts.GetBankAccount;
 using BankOfTrinh.Server.Features.Customers.CreateCustomer;
+using BankOfTrinh.Server.Features.Transactions.Deposit;
 using System.Net.Http.Json;
 
 namespace BankOfTrinh.Server.Tests.Infrastructure;

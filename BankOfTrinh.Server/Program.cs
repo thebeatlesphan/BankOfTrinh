@@ -1,10 +1,11 @@
 using BankOfTrinh.Server.Data;
 using BankOfTrinh.Server.Features.Accounts.CreateBankAccount;
-using BankOfTrinh.Server.Features.Accounts.Deposit;
 using BankOfTrinh.Server.Features.Accounts.GetBankAccount;
 using BankOfTrinh.Server.Features.Accounts.GetCustomerBankAccounts;
 using BankOfTrinh.Server.Features.Customers.CreateCustomer;
 using BankOfTrinh.Server.Features.Customers.GetCustomer;
+using BankOfTrinh.Server.Features.Transactions.Deposit;
+using BankOfTrinh.Server.Features.Transactions.GetTransactions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,7 @@ builder.Services.AddScoped<CreateBankAccountService>();
 builder.Services.AddScoped<GetBankAccountService>();
 builder.Services.AddScoped<GetCustomerBankAccountsService>();
 builder.Services.AddScoped<DepositService>();
+builder.Services.AddScoped<GetBankAccountTransactionsService>();
 
 // Handle development CORS
 builder.Services.AddCors(options =>
@@ -68,6 +70,7 @@ app.MapCreateBankAccountEndpoint();
 app.MapGetBankAccountEndpoint();
 app.MapGetCustomerBankAccountsEndpoint();
 app.MapDepositEndpoint();
+app.MapGetBankAccountTransactionsEndpoint();
 
 app.MapControllers();
 app.MapFallbackToFile("/index.html");

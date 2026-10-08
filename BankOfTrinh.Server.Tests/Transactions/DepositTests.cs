@@ -2,7 +2,7 @@ using BankOfTrinh.Server.Tests.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 
-namespace BankOfTrinh.Server.Tests.Deposits;
+namespace BankOfTrinh.Server.Tests.Transactions;
 
 [Collection("Database collection")]
 public sealed class DepositTests : IAsyncLifetime
