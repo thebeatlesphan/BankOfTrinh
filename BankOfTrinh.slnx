@@ -3,6 +3,8 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="BankOfTrinh.Ledger.Tests/BankOfTrinh.Ledger.Tests.csproj" />
+  <Project Path="BankOfTrinh.Ledger/BankOfTrinh.Ledger.csproj" />
   <Project Path="BankOfTrinh.Server.Tests/BankOfTrinh.Server.Tests.csproj" />
   <Project Path="BankOfTrinh.Server/BankOfTrinh.Server.csproj" />
 </Solution>

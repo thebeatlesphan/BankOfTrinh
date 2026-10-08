@@ -27,6 +27,7 @@
     <ProjectReference Include="..\bankoftrinh.client\bankoftrinh.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\BankOfTrinh.Ledger\BankOfTrinh.Ledger.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using BankOfTrinh.Ledger;
 using BankOfTrinh.Server.Data;
 using BankOfTrinh.Server.Features.Accounts.CreateBankAccount;
 using BankOfTrinh.Server.Features.Accounts.GetBankAccount;
@@ -33,6 +34,9 @@ builder.Services.AddScoped<GetBankAccountService>();
 builder.Services.AddScoped<GetCustomerBankAccountsService>();
 builder.Services.AddScoped<DepositService>();
 builder.Services.AddScoped<GetBankAccountTransactionsService>();
+
+// Ledger (double-entry money movement)
+builder.Services.AddLedger(builder.Configuration.GetConnectionString("BankOfTrinh")!);
 
 // Handle development CORS
 builder.Services.AddCors(options =>
